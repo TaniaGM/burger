@@ -1,0 +1,24 @@
+{
+  "name": "burger",
+  "version": "1.0.0",
+  "description": "creating a burger program",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaniaGM/burger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TaniaGM/burger/issues"
+  },
+  "homepage": "https://github.com/TaniaGM/burger#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.0",
+    "mysql": "^2.18.1"
+  }
+}
