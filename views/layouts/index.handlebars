@@ -1,42 +1,59 @@
-<div class="container"></div>
-
-<div class="jumbotron">
-    <h1 id="color-override">Eat the Burger</h1>
-    <p id="color-override">Make burgers, eat burgers</p>
-    <br>
-    <h2 id="color-override">Make a Burger</h2>
-    <panel>
-        <form class="create-form"></form>
-            <div class="form-group">
-            <label for="newburger" id="color-override">New Burger:</label>
-            <input type="text" id="newburger" name="burger">
-            <button type="submit" class="btn btn-success" id="addburger"><span class="fa fa-thumbs-up"></span></button>
-            </div>
-        </form>
-    </panel>
-
-</div>
-
-<div class="row">
-    
-    <div class="col-sm-6">
-        <div class="panel panel-default">
-            <div class="panel-heading" id="righthead"><strong>Devoured Burgers</strong></div>
-            <div class="panel-body">
-                <ul>
-                    {{ #each burgers }}
-                        {{ #if devoured }}
-                        <span><strong> {{ this.id }} - {{ this.burger_name }}</strong></span>
-                        <button type="button" class="trashburger btn btn-danger" id="trashbutton" data-id"{{this.id}}"
-                        data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
-                        <hr>
-                    {{//if}}
-                {{/each}}
-                </ul>
-            </div>
-
+<div class="container">
+    <div class="row">
+        <div id="title" class="col-6 mx-auto text-center">
+            <h1>Tania's Burger Shack</h1>
+            <h3>"These burgers are making me thirsty!"</h3>
         </div>
     </div>
 
+    <div class="row" id="entry-row">
+
+        <div class="col-4 mx-auto" id="entry">
+            <h3 class="text-center">Enter Your Creation!</h3>
+            <div class="row">
+                <div class="col-12">
+                    <form class="form-inline">
+                        <div class="form-group mx-sm-3 mb-2 text-center">
+                            {{!-- <label for="burgerInput" class="sr-only">Burger</label> --}}
+                            <input type="text" class="form-control" id="burgerInput" placeholder="Burger">
+                        </div>
+                        <button type="submit" id="add-btn" class="btn-sm btn-primary mb-2 text-center">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-4" id="notEaten">
+            <h3 class="text-center">Not Devoured</h3>
+            <ul>
+                {{#each burgers}}
+                {{#unless devoured}}
+                <li>
+                    {{burger_name}} <button data-burgerid="{{id}} " data-devour="{{devoured}}" id="devour-btn"
+                        class="btn-sm btn-primary mb-2">Devour</button>
+                </li>
+                {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="col-4 img-fluid">
+            <img src="/public/assets/css/burger banner.png" class="img-fluid">
+        </div>
+
+        <div class="col-4 ml-auto" id="eaten">
+            <h3 class="text-center">Devoured</h3>
+            <ul>
+                {{#each burgers}}
+                {{#if devoured}}
+                <li>
+                    {{burger_name}}
+                </li>
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
 </div>
-</form>

@@ -1,38 +1,21 @@
-<h1>Cats!</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<h2>Cats that are not sleepy!</h2>
+<head>
+    <meta charset="UTF-8">
+    <title>Tania's Burger Shack</title>
+    {{!-- styles --}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/assets/css/burger.css" type="text/css">
+    {{!-- jquery --}}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="/public/assets/js/burgerfront.js"></script>
+</head>
 
-<ul>
-    {{#each cats}}
-    {{#unless sleepy}}
-    {{> cats/cat-block sleep=true}}
-    {{/unless}}
-    {{/each}}
-</ul>
+<body>
+    {{{ body }}}
+</body>
 
-<h2>Cats that are sleepy!</h2>
-
-<ul>
-    {{#each cats}}
-    {{#if sleepy}}
-    {{> cats/cat-block sleep=false}}
-    {{/if}}
-    {{/each}}
-</ul>
-
-<h2>Add a Cat</h2>
-<form class="create-form">
-
-    <div class="form-group">
-        <label for="ca">Cat Name:</label>
-        <input type="text" id="ca" name="name">
-    </div>
-
-    <div class="form-group">
-        <label for="sleepy">Sleepy?</label><br>
-        <input type="radio" name="sleepy" value="1" checked> Sleepy!<br>
-        <input type="radio" name="sleepy" value="0"> Awake
-    </div>
-
-    <button type="submit">Add Cat</button>
-</form>
+</html>

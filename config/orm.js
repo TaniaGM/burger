@@ -1,52 +1,51 @@
-const connection = require("./connection.js");
+var connection = require("./connection.js");
 
 // Helper function for SQL syntax
 function printQuestionMarks(num) {
-    var arr = [];
-
+    var questionArray = [];
     for (var i = 0; i < num; i++) {
-        arr.push("?");
+        questionArray.push("?");
     }
 
-    return arr.toString();
+    return questionArray.toString();
 }
 
 // Helper function to convert object key/value pairs to SQL syntax
 function objToSql(ob) {
-    var arr = [];
+    var sqlArr = [];
 
     // loop through the keys and push the key/value as a string int arr
     for (var key in ob) {
         var value = ob[key];
         // check to skip hidden properties
         if (Object.hasOwnProperty.call(ob, key)) {
-            // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
             }
-            // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-            // e.g. {sleepy: true} => ["sleepy=true"]
-            arr.push(key + "=" + value);
+           
+            sqlArr.push(key + "=" + value);
         }
     }
 
     // translate array of strings to a single comma-separated string
-    return arr.toString();
+    return sqlArr.toString();
 }
 
 // Display all burgers in the db
 var orm = {
-    selectAll: function (table, cb) {
+    all: function (table, callbackAll) {
         var queryString = "SELECT * FROM " + table + ";";
-        connection.query(queryString, function (err, result) {
+        connection.query(queryString, function (err, res) {
             if (err) {
-                throw err;
+                console.log(err)
             }
-            cb(result);
-        });
+            else {
+            callbackAll(res)
+            }
+        })
     },
     // Add burger to db
-    insertOne: function(table, cols, vals, cb) {
+    insertOne: function(table, cols, vals, insertCallback) {
         var queryString = "INSERT INTO " + table;
 
         queryString += " (";
@@ -63,15 +62,15 @@ var orm = {
                 throw err;
             }
 
-            cb(result);
+            insertcb(result);
         });
     },
     // Setting burger devoured to true
-    update: function (table, objColVals, condition, cb) {
+    updateOne: function (table, devourStatus, condition, updateCallback) {
         var queryString = "UPDATE " + table;
 
         queryString += " SET ";
-        queryString += objToSql(objColVals);
+        queryString += objToSql(devourStatus);
         queryString += " WHERE ";
         queryString += condition;
 
@@ -81,10 +80,14 @@ var orm = {
                 throw err;
             }
 
-            cb(result);
+            updateCallback(result);
         });
-    },
-    // Delete burger from db
+    }
+}
+
+module.exports = orm;
+
+/*   // Delete burger from db
     delete: function (table, condition, cb) {
         var queryString = "DELETE FROM " + table;
         queryString += " WHERE ";
@@ -99,3 +102,4 @@ var orm = {
         });
     }
 };
+*/
