@@ -11,17 +11,18 @@ router.get("/", function (req, res) {
         var burgerObj = {
             burgers: data
         };
-        console.log(burgerObj);
+        //console.log("Burger Obj: "+JSON.stringify(burgerObj));
         res.render("index", burgerObj);
     });
 });
 
 // add new burger to db
 router.post("/api/burgers", function (req, res) {
+    console.log("Controller: "+JSON.stringify(req.body));
     burger.insertOne([
         "burger_name", "devoured"
     ], [
-        req.body.burger_name, req.body.devoured
+        req.body.name, req.body.devoured
     ], function (result) {
         // Send back the ID of the new quote
         res.json({ id: result.insertId });

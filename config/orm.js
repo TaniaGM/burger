@@ -42,6 +42,7 @@ var orm = {
             if (err) {
                 throw err;
             }
+            console.log("Res: "+result);
             cb(result);
         });
     },
@@ -99,3 +100,5 @@ var orm = {
         });
     }
 };
+
+module.exports = orm;
