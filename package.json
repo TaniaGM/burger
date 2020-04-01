@@ -19,6 +19,13 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^4.0.0",
+    "minimist": "^1.2.5",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "^9.0.6"
+  },
+  "resolutions": {
+    "minimist": "^1.2.3"
   }
 }
